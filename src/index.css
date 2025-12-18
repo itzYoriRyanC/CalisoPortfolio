@@ -1,0 +1,388 @@
+/* =========================================================
+   Tailwind v4 entry + Theme Tokens
+   ========================================================= */
+@import "tailwindcss";
+
+@theme {
+  /* -------------------------
+     Fonts
+  ------------------------- */
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-heading: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  /* -------------------------
+     Colors (mapped to CSS vars)
+     These are used by Tailwind utilities like bg-background, text-foreground, etc.
+  ------------------------- */
+  --color-border: hsl(var(--border));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-card: hsl(var(--card));
+
+  /* -------------------------
+     Animations (Tailwind v4 tokens)
+  ------------------------- */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.7s ease-out forwards;
+  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
+  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
+  --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
+  --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
+  --animate-rain: rain-fall 1.6s linear infinite;
+--animate-blood: blood-fall 2.4s linear infinite;
+
+}
+
+/* =========================================================
+   Keyframes
+   ========================================================= */
+@keyframes float {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-subtle {
+  0%,
+  100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rain-fall {
+  0%   { transform: translateY(-140px); opacity: 0.0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(calc(100vh + 140px)); opacity: 1; }
+}
+
+@keyframes blood-fall {
+  0%   { transform: translateY(-160px); opacity: 0.0; }
+  12%  { opacity: 1; }
+  100% { transform: translateY(calc(100vh + 160px)); opacity: 1; }
+}
+
+/* =========================================================
+   Base Layer (CSS variables + global resets)
+   ========================================================= */
+@layer base {
+  :root {
+    /* -------------------------
+       LIGHT MODE – soft sky / fog blue
+    ------------------------- */
+    --background: 210 30% 92%;
+    --foreground: 222 25% 18%;
+
+    --card: 210 30% 96%;
+
+    /* Primary – calm blue */
+    --primary: 205 70% 48%;
+    --primary-foreground: 210 40% 98%;
+
+    --border: 210 25% 82%;
+
+    /* Optional “page gradient” token (if you use it anywhere) */
+    --page-gradient:
+      radial-gradient(1200px 600px at 50% 0%, rgba(147, 197, 253, 0.22), transparent 60%),
+      radial-gradient(900px 500px at 50% 100%, rgba(186, 230, 253, 0.28), transparent 65%),
+      linear-gradient(180deg, rgba(241, 245, 249, 1), rgba(226, 232, 240, 1));
+  }
+
+  .dark {
+    /* -------------------------
+       DARK MODE – moody + red primary
+    ------------------------- */
+    --background: 222 47% 4%;
+    --foreground: 0 0% 100%;
+
+    --card: 222 47% 8%;
+
+    --primary: 0 80% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --border: 217 33% 20%;
+  }
+
+  /* Apply Tailwind border color token globally */
+  * { @apply border-border; }
+
+  html { @apply scroll-smooth; }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-family: var(--font-sans);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* =========================================================
+   Tailwind v4 Utilities (custom utility classes)
+   ========================================================= */
+
+/* Container utility (your custom widths) */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+
+  @media (width >= 640px) { max-width: 640px; }
+  @media (width >= 768px) { max-width: 768px; }
+  @media (width >= 1024px) { max-width: 1024px; }
+  @media (width >= 1280px) { max-width: 1280px; }
+  @media (width >= 1400px) { max-width: 1400px; }
+}
+
+/* Heading font utility */
+@utility font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Glow text helper */
+@utility text-glow {
+  @apply relative;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+/* Hover “lift” on cards */
+@utility card-hover {
+  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+}
+
+/* Gradient border helper */
+@utility gradient-border {
+  @apply relative rounded-md;
+  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
+  background-clip: padding-box;
+  border: 1px solid transparent;
+}
+
+/* Button styling */
+@utility cosmic-button {
+  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium
+         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
+         hover:scale-105 active:scale-95;
+}
+
+/* Star / meteor helpers for your background */
+/* Normal rain */
+@utility rain-drop {
+  @apply absolute pointer-events-none rounded-full;
+  background: linear-gradient(
+    to bottom,
+    rgba(210, 235, 255, 0),
+    rgba(210, 235, 255, 0.85)
+  );
+}
+
+/* Blood rain / tears */
+@utility blood-drop {
+  @apply absolute pointer-events-none rounded-full;
+  background: linear-gradient(
+    to bottom,
+    rgba(80, 0, 0, 0),
+    rgba(140, 10, 10, 0.95)
+  );
+  box-shadow: 0 0 10px rgba(120, 0, 0, 0.25);
+}
+
+/* =========================================================
+   Logo “tear drop” animation
+   ========================================================= */
+@utility logo-tear {
+  @apply relative inline-block cursor-pointer;
+}
+
+/* Tear droplet */
+.logo-tear::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 6px;
+  height: 6px;
+
+  /* uses your primary color (blue in light, red in dark) */
+  background: hsl(var(--primary));
+
+  border-radius: 50% 50% 60% 60%;
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+  box-shadow: 0 0 10px hsl(var(--primary) / 0.6);
+}
+
+/* Trigger droplet on hover */
+.logo-tear:hover::after {
+  animation: tear-drop 0.9s ease-out forwards;
+}
+
+/* Droplet falling */
+@keyframes tear-drop {
+  0% {
+    transform: translateX(-50%) translateY(0) scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  100% {
+    transform: translateX(-50%) translateY(28px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* Optional wobble animation */
+@keyframes wobble {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-6px) rotate(-6deg); }
+}
+
+/* =========================================================
+   Root layout
+   ========================================================= */
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+/* =========================================================
+   Mood Background Overlay
+   IMPORTANT: Do NOT put overflow clipping on the hero/content wrapper.
+   If you need clipping for particles/meteors, put overflow-hidden on the
+   BACKGROUND layer only (e.g., an absolute div behind content).
+   ========================================================= */
+
+/* mood-bg sets positioning only */
+@utility mood-bg {
+  position: relative;
+}
+
+/* Background overlay layer */
+.mood-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  /* LIGHT MODE – watery blue */
+  background:
+    radial-gradient(1200px 600px at 20% 20%, rgba(56,189,248,0.35), transparent 60%),
+    radial-gradient(900px 500px at 80% 30%, rgba(59,130,246,0.25), transparent 55%),
+    radial-gradient(700px 500px at 50% 80%, rgba(14,165,233,0.18), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.15));
+}
+
+/* DARK MODE – bloody red */
+.dark .mood-bg::before {
+  background:
+    radial-gradient(1100px 700px at 30% 25%, rgba(239,68,68,0.35), transparent 60%),
+    radial-gradient(800px 600px at 75% 40%, rgba(185,28,28,0.35), transparent 60%),
+    radial-gradient(700px 600px at 50% 85%, rgba(0,0,0,0.85), transparent 60%),
+    linear-gradient(135deg, rgba(127,29,29,0.55), rgba(0,0,0,0.75));
+}
+
+/* =========================================================
+   Screen dimmer
+   NOTE: You had this defined twice; keeping one clean version.
+   ========================================================= */
+.screen-dimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  /* Light mode → subtle */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.08),
+    rgba(0, 0, 0, 0.12)
+  );
+}
+
+/* Dark mode → stronger */
+.dark .screen-dimmer {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* Optional “reduced brightness” preference */
+@media (prefers-reduced-brightness: reduce) {
+  body {
+    filter: brightness(0.96) contrast(0.98);
+  }
+}
+
+/* =========================================================
+   Navigation link styling
+   ========================================================= */
+.nav-link {
+  @apply text-foreground/80 hover:text-primary transition-colors duration-300 ease-out;
+}
+
+/* =========================================================
+   Typing effect
+   IMPORTANT:
+   - This is what commonly causes your HERO NAME to get clipped.
+   - Only use .typing-line on SHORT text (like "Frontend Developer").
+   - Never apply it to the full <h1> name string.
+   ========================================================= */
+.typing-line {
+  display: inline-block;
+
+  /* Keep it on one line for the typewriter look */
+  white-space: nowrap;
+
+  /* Hide the “untyped” portion */
+  overflow: hidden;
+
+  /* Critical safety: never exceed container width */
+  max-width: 100%;
+
+  /* Start hidden for animation */
+  width: 0;
+
+  /* Caret */
+  border-right: 2px solid currentColor;
+
+  /* Type + caret blink */
+  animation: typing 5.5s steps(27, end) infinite,
+             blink 0.8s step-end infinite;
+}
+
+/* Type → hold → delete → pause */
+@keyframes typing {
+  0%   { width: 0; }
+  12%  { width: 0; }       /* pause before typing */
+
+  48%  { width: 20ch; }    /* typed length */
+  85%  { width: 20ch; }    /* hold for reading */
+
+  100% { width: 0; }       /* delete */
+}
+
+/* You referenced "blink" but had "caret" before.
+   This fixes the missing keyframes issue. */
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50%      { border-color: currentColor; }
+}
+
+/* Respect accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .typing-line {
+    animation: none;
+    width: auto;
+    border-right: none;
+  }
+}

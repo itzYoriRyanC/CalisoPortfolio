@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Facebook,
-} from "lucide-react";
+import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Facebook } from "lucide-react";
 import { SiDiscord } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -16,50 +8,61 @@ import emailjs from "@emailjs/browser";
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isSubmitting) return;
-
-    setIsSubmitting(true);
-
-    emailjs
-      .sendForm(
-        "service_cx2isks",
-        "template_c5oorv1",
-        e.target,
-        "ptYbyUL1np5bXH9wu"
-      )
-      .then(() => {
-        toast.success("Message sent!");
-        setIsSubmitting(false);
-        e.target.reset();
-      })
-      .catch(() => {
-        toast.error("Failed to send message.");
-        setIsSubmitting(false);
-      });
-  };
-
-
   // Centralize your links/values (easier to maintain)
   const EMAIL = "calisoryan2@gmail.com";
   const PHONE = "+649640855896"; // for tel: links (no spaces)
   const PHONE_LABEL = "+64 9640 855 896"; // for display
   const LOCATION = "Philippines, Misamis Occidental";
 
-  // NOTE: Replace DISCORD_USER_ID with your real Discord User ID
-  // (Discord -> User Settings -> Advanced -> Developer Mode -> right click your profile -> Copy ID)
+  // Discord user id link
   const DISCORD_USER_ID = "707200309172109365";
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Prevent double submits (spam-clicking)
+    if (isSubmitting) return;
+
+    // Optional: quick guard to ensure env vars exist
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      toast.error("Email service is not configured. Please try again later.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // IMPORTANT:
+    // - sendForm needs the form element (e.target)
+    // - Do NOT end the line with ';' before chaining .then/.catch
+    emailjs
+      .sendForm(serviceId, templateId, e.target, publicKey)
+      .then(() => {
+        toast.success("Message sent! I'll get back to you soon.");
+
+        // Reset the form fields after success
+        e.target.reset();
+      })
+      .catch((err) => {
+        console.error("EmailJS error:", err);
+        toast.error("Failed to send message. Please try again.");
+      })
+      .finally(() => {
+        // Always re-enable the button (success or fail)
+        setIsSubmitting(false);
+      });
+  };
 
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
-        {/* Section heading */}
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           Get In <span className="text-primary">Touch</span>
         </h2>
 
-        {/* Section subtext */}
         <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
           Have a project in mind or want to collaborate? I’m open to new
           opportunities and flexible, student-friendly collaborations.
@@ -78,7 +81,6 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  {/* IMPORTANT: mailto: makes it clickable as an email */}
                   <a
                     href={`mailto:${EMAIL}`}
                     className="text-muted-foreground hover:text-primary transition-colors"
@@ -95,7 +97,6 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-medium">Phone</h4>
-                  {/* tel: needs a clean number (no spaces) */}
                   <a
                     href={`tel:${PHONE}`}
                     className="text-muted-foreground hover:text-primary transition-colors"
@@ -121,11 +122,6 @@ export const ContactSection = () => {
             <div className="pt-8">
               <h4 className="font-medium mb-4">Connect With Me</h4>
 
-              {/* 
-                Use a shared class so all icons behave the same:
-                - consistent size
-                - consistent hover color
-              */}
               <div className="flex space-x-4 justify-center">
                 <a
                   href="https://www.linkedin.com/in/ryan-caliso-1519b238a/"
@@ -157,14 +153,8 @@ export const ContactSection = () => {
                   <Instagram size={22} />
                 </a>
 
-                {/* 
-                  Discord note:
-                  - lucide-react does NOT have a Discord brand icon
-                  - react-icons does (SiDiscord)
-                  - Use size + className="block" to align baseline nicely with Lucide icons
-                */}
                 <a
-                href={`https://discord.com/users/${DISCORD_USER_ID}`}
+                  href={`https://discord.com/users/${DISCORD_USER_ID}`}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Discord"
@@ -181,7 +171,6 @@ export const ContactSection = () => {
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
             <form className="space-y-6" onSubmit={handleSubmit}>
-              {/* Name */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Your Name
@@ -196,12 +185,8 @@ export const ContactSection = () => {
                 />
               </div>
 
-              {/* Email */}
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
                   Your Email
                 </label>
                 <input
@@ -214,12 +199,8 @@ export const ContactSection = () => {
                 />
               </div>
 
-              {/* Message */}
               <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
                   Your Message
                 </label>
                 <textarea
@@ -232,7 +213,6 @@ export const ContactSection = () => {
                 />
               </div>
 
-              {/* Submit */}
               <button
                 type="submit"
                 disabled={isSubmitting}

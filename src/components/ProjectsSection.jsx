@@ -7,8 +7,7 @@ const projects = [
     description: "Gig work experience, for more proof navigate to pdf",
     image: "/projects/Trustclubproof.png",
     tags: ["Gmail", "Microsoft Word", "Excel"],
-   demoUrl: "/trustclubfinalproof.pdf",
-    
+    demoUrl: "/trustclubfinalproof.pdf",
   },
   {
     id: 2,
@@ -28,7 +27,25 @@ const projects = [
     video: "/projects/0001-0250.mp4",
     tags: ["Blender", "Modeling", "Animation"],
     demoUrl: "https://www.facebook.com/people/Majestic-Fragrance/61560987964311/",
-    
+  },
+  {
+    id: 4,
+    title: "MHARSMC Inventory System",
+    description:
+      "An inventory management system focused on stock monitoring, expiry tracking, and report-ready workflows for healthcare operations.",
+    image: "/projects/mharsmc.png",
+    tags: ["React", "JavaScript", "Vercel", "Inventory System"],
+    demoUrl: "https://mharsmc-inventory-system.vercel.app/login",
+    githubUrl: "https://github.com/itzYoriRyanC/MHARSMC-Inventory-System",
+  },
+  {
+    id: 5,
+    title: "Alano & Sons Weighted Credit Scoring",
+    description:
+      "A weighted credit scoring system designed to help evaluate applicants through structured scoring and decision support.",
+    image: "/projects/alano.png",
+    tags: ["XAML (WPF)", "C# (.NET)", "UI/UX", "Scoring Algorithm"],
+     githubUrl: "https://github.com/itzYoriRyanC/weighted-credit-scoring-alano-and-sons",
   },
 ];
 
@@ -41,15 +58,15 @@ export const ProjectsSection = () => {
         </h2>
 
         <p className="text-center text-muted-foreground text-sm md:text-base leading-relaxed mb-12 max-w-xl mx-auto">
-  Here are some of my recent projects. Each project was carefully
-  crafted with attention to Client Base, performance, and user experience.
-</p>
-
+          Here are some of my recent projects. Each project was carefully
+          crafted with attention to client needs, performance, and user
+          experience.
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, key) => (
+          {projects.map((project) => (
             <div
-              key={key}
+              key={project.id}
               className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
             >
               <div className="h-48 overflow-hidden relative bg-black">
@@ -73,8 +90,11 @@ export const ProjectsSection = () => {
 
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span className="px-2 py-1 text-[11px] font-medium tracking-tight border rounded-full bg-secondary text-secondary-foreground">
+                  {project.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="px-2 py-1 text-[11px] font-medium tracking-tight border rounded-full bg-secondary text-secondary-foreground"
+                    >
                       {tag}
                     </span>
                   ))}
@@ -90,20 +110,27 @@ export const ProjectsSection = () => {
 
                 <div className="flex justify-between items-center">
                   <div className="flex space-x-3">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      className="text-foreground/70 hover:text-primary transition-colors duration-300"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      className="text-foreground/70 hover:text-primary transition-colors duration-300"
-                    >
-                      <Github size={20} />
-                    </a>
+                    {project.demoUrl && project.demoUrl !== "#" && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-foreground/70 hover:text-primary transition-colors duration-300"
+                      >
+                        <ExternalLink size={20} />
+                      </a>
+                    )}
+
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-foreground/70 hover:text-primary transition-colors duration-300"
+                      >
+                        <Github size={20} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -115,6 +142,7 @@ export const ProjectsSection = () => {
           <a
             className="cosmic-button w-fit flex items-center mx-auto gap-2"
             target="_blank"
+            rel="noreferrer"
             href="https://github.com/itzYoriRyanC"
           >
             Check My Github <ArrowRight size={16} />

@@ -41,6 +41,7 @@ const skills = [
   { name: "Game Dev", level: 50, category: "Bonus" },
   { name: "Documentation", level: 75, category: "Bonus" },
   { name: "Marketing", level: 50, category: "Bonus" },
+  { name: "XAML", level: 30, category: "Bonus" },
   
   
 

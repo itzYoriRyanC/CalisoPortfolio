@@ -1,5 +1,5 @@
 import { Box, Code, User } from "lucide-react";
-import cvPdf from "@/assets/Caliso_CV.pdf";
+import cvPdf from "@/assets/CalisoN_CV.pdf";
 
 export const AboutSection = () => {
   return (
@@ -61,7 +61,7 @@ export const AboutSection = () => {
               {/* Secondary button */}
               <a
                 href={cvPdf}
-                download="Ryan_Andrian_Caliso_CV.pdf"
+                download="Ryan_Andrian_CalisoN_CV.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="px-6 py-2 rounded-full border border-primary text-primary tracking-wide hover:bg-primary/10 transition-colors duration-300"

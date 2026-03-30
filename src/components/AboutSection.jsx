@@ -1,5 +1,5 @@
 import { Box, Code, User } from "lucide-react";
-import cvPdf from "@/assets/CalisoN_CV.pdf";
+import cvPdf from "../assets/Caliso_CVNew.pdf";
 
 export const AboutSection = () => {
   return (
@@ -23,9 +23,7 @@ export const AboutSection = () => {
 
             {/* Paragraph – improved readability */}
             <p className="text-muted-foreground leading-relaxed max-w-md">
-              Fourth-year college student and aspiring web developer passionate
-              about building modern, responsive web applications and
-              continuously expanding my technical skills.
+              Web developer and 3D designer creating modern, responsive, and visually engaging digital experiences.
             </p>
 
             {/* Call-to-action buttons */}
@@ -85,14 +83,12 @@ export const AboutSection = () => {
                 <div className="text-left">
                   {/* Card title */}
                   <h4 className="font-semibold text-lg tracking-tight mb-1">
-                    Graphics Design
-                  </h4>
+  UI/UX & Visual Design
+</h4>
 
-                  {/* Card description */}
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    Managing wireframes and overall visual aesthetics, with a
-                    focus on contemporary design trends.
-                  </p>
+<p className="text-muted-foreground text-sm leading-relaxed">
+  Designing intuitive user interfaces and engaging experiences through wireframes, layouts, and modern visual systems.
+</p>
                 </div>
               </div>
             </div>
@@ -138,7 +134,25 @@ export const AboutSection = () => {
                 </div>
               </div>
             </div>
+{/* Social Media Management */}
+<div className="gradient-border p-6 card-hover">
+  <div className="flex items-start gap-4">
+    
+    <div className="p-3 rounded-full bg-primary/10">
+      <User className="h-6 w-6 text-primary" />
+    </div>
 
+    <div className="text-left">
+      <h4 className="font-semibold text-lg tracking-tight mb-1">
+        Social Media Management
+      </h4>
+
+      <p className="text-muted-foreground text-sm leading-relaxed">
+        Managing content, engagement, and branding strategies to grow and maintain a strong online presence.
+      </p>
+    </div>
+  </div>
+</div>
           </div>
         </div>
       </div>

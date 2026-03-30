@@ -21,7 +21,7 @@ export const HeroSection = () => {
 
           {/* Subtitle */}
           <p className="mt-5 max-w-2xl mx-auto text-base md:text-lg leading-relaxed text-foreground/75">
-  I design and build modern web experiences and 3D visuals with clarity and performance in mind.
+ I design and build modern web experiences, create 3D visuals, and manage social media that grows brands.
 </p>
 
           {/* CTA */}

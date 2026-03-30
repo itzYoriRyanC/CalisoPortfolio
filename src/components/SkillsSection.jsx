@@ -14,7 +14,7 @@ const skills = [
 
   // 3D Design
   { name: "Animation", level: 40, category: "3D Designs" },
-  { name: "Modeling", level: 75, category: "3D Designs" },
+  { name: "Modeling", level: 70, category: "3D Designs" },
   { name: "Texture", level: 70, category: "3D Designs" },
   { name: "Typography", level: 40, category: "3D Designs" },
   { name: "VFX", level: 20, category: "3D Designs" },
@@ -23,15 +23,22 @@ const skills = [
   { name: "Lightings", level: 40, category: "3D Designs" },
   { name: "Shading", level: 70, category: "3D Designs" },
 
+  //Social Media Management
+  { name: "Graphics Design", level: 80, category: "SMM" },
+  { name: "Content Planning", level: 80, category: "SMM" },
+  { name: "Facebook Ads", level: 60, category: "SMM" },
+   { name: "Analytics & Insights", level: 90, category: "SMM" },
+   { name: "Audience Engagement", level: 90, category: "SMM" },
   // Tools
-  { name: "Git/GitHub", level: 40, category: "tools" },
-  { name: "Blender", level: 75, category: "tools" },
-  { name: "Figma", level: 70, category: "tools" },
-  { name: "VS Code", level: 70, category: "tools" },
-  { name: "Vercel", level: 40, category: "tools" },
-  { name: "Capcut", level: 40, category: "tools" },
-  { name: "Unity hub", level: 60, category: "tools" },
-   { name: "Microsoft Word", level: 80, category: "tools" },
+  { name: "Git/GitHub", level: 40, category: "Tools" },
+  { name: "Blender", level: 60, category: "Tools" },
+  { name: "Figma", level: 60, category: "Tools" },
+  { name: "Canva", level: 60, category: "Tools" },
+  { name: "VS Code", level: 70, category: "Tools" },
+  { name: "Vercel", level: 40, category: "Tools" },
+  { name: "Capcut", level: 40, category: "Tools" },
+   { name: "Google Sheets", level: 90, category: "Tools" },
+   { name: "MySQL", level: 60, category: "Tools" },
   
 
   // Bonus
@@ -39,22 +46,24 @@ const skills = [
   { name: "C#", level: 50, category: "Bonus" },
   { name: "C++", level: 50, category: "Bonus" },
   { name: "Game Dev", level: 50, category: "Bonus" },
-  { name: "Documentation", level: 75, category: "Bonus" },
-  { name: "Marketing", level: 50, category: "Bonus" },
+  { name: "Documentation", level: 70, category: "Bonus" },
+  { name: "Marketing Research", level: 60, category: "Bonus" },
   { name: "XAML", level: 30, category: "Bonus" },
+  { name: "SQL", level: 60, category: "Bonus" },
   
   
 
 ];
 
-const categories = ["all", "Web Development", "3D Designs", "tools", "Bonus"];
+const categories = ["Web Development", "3D Designs", "SMM", "Tools", "Bonus"];
 
 export const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("Web Development");
 
   const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
+  (skill) => skill.category === activeCategory
+);
+  
   return (
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">

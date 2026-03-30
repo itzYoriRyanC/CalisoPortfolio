@@ -81,7 +81,7 @@ const projects = [
     "Customer Engagement",
     "Online Orders"
   ],
-  demoUrl: "https://facebook.com"
+  demoUrl: "https://www.facebook.com/mamaditskitchen"
 },
 
 {

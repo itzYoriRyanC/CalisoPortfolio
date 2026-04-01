@@ -66,57 +66,59 @@ const projects = [
     demoUrl: "https://www.facebook.com/profile.php?id=61587940575288",
   },
   {
-  id: 7,
-  title: "Mama Dit’s Kitchen",
-  description:
-    "Managed social media presence during the pandemic (2021–2022), creating promotional food content, handling customer inquiries, and supporting online orders and deliveries.",
-  images: [
-    "/projects/dits.png",
-    "/projects/dits1.png"
-  ],
-  tags: [
-    "Facebook",
-    "Content Creation",
-    "Food Marketing",
-    "Customer Engagement",
-    "Online Orders"
-  ],
-  demoUrl: "https://www.facebook.com/mamaditskitchen"
-},
-
-{
-  id: 8,
-  title: "Cucina Online",
-  description:
-    "Managed social media and online presence for a food business, creating promotional content, assisting with customer inquiries, and supporting online orders and delivery coordination.",
-  images: [
-    "/projects/Conline.png"
-  ],
-  tags: [
-    "Facebook",
-    "Content Creation",
-    "Food Marketing",
-    "Customer Engagement",
-    "Online Orders"
-  ],
-  demoUrl: "https://www.facebook.com/cariton.thewheeldeal"
-},
-{
-  id: 9,
-  title: "3D Portfolio UI Design",
-  description:
-    "Designed the visual layout and wireframes for a 3D portfolio website, including UI structure, scene composition, and user flow planning for an interactive front-end experience.",
-  images: [
-    "/projects/3DGraphics.png"
-  ],
-  tags: [
-    "UI/UX Design",
-    "Wireframing",
-    "Figma",
-    "3D Concept",
-    "Frontend Planning"
-  ]
-}
+    id: 7,
+    title: "Mama Dit’s Kitchen",
+    description:
+      "Managed social media presence during the pandemic (2021–2022), creating promotional food content, handling customer inquiries, and supporting online orders and deliveries.",
+    images: ["/projects/dits.png", "/projects/dits1.png"],
+    tags: [
+      "Facebook",
+      "Canva",
+      "Content Creation",
+      "Food Marketing",
+      "Customer Engagement",
+      "Online Orders",
+    ],
+    demoUrl: "https://www.facebook.com/mamaditskitchen",
+  },
+  {
+    id: 8,
+    title: "Cucina Online",
+    description:
+      "Managed social media and online presence for a food business, creating promotional content, assisting with customer inquiries, and supporting online orders and delivery coordination.",
+    images: ["/projects/Conline.png"],
+    tags: [
+      "Facebook",
+      "Content Creation",
+      "Food Marketing",
+      "Customer Engagement",
+      "Online Orders",
+    ],
+    demoUrl: "https://www.facebook.com/cariton.thewheeldeal",
+  },
+  {
+    id: 9,
+    title: "3D Portfolio UI Design",
+    description:
+      "Designed the visual layout and wireframes for a 3D portfolio website, including UI structure, scene composition, and user flow planning for an interactive front-end experience.",
+    images: ["/projects/3DGraphics.png"],
+    tags: [
+      "UI/UX Design",
+      "Wireframing",
+      "Figma",
+      "3D Concept",
+      "Frontend Planning",
+    ],
+  },
+  {
+    id: 10,
+    title: "Google Data Analytics Certificate",
+    description:
+      "Completed the Google Data Analytics course on Coursera, covering the foundations of data, analytics workflows, and data-driven decision-making.",
+    images: ["/projects/DataAnalyst.png"],
+    tags: ["Google", "Coursera", "Data Analytics"],
+    demoUrl: "/projects/mydataanalystjourney.pdf",
+  },
 ];
 
 export const ProjectsSection = () => {
@@ -138,38 +140,43 @@ export const ProjectsSection = () => {
 
         return updated;
       });
-    }, 2500);
+    }, 2800);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section id="projects" className="py-24 px-4 relative">
+    <section
+      id="projects"
+      className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6"
+    >
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-center">
-          Featured <span className="text-primary">Projects</span>
-        </h2>
+        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-14">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+            Featured <span className="text-primary">Projects</span>
+          </h2>
 
-        <p className="text-center text-muted-foreground text-sm md:text-base leading-7 mb-12 max-w-2xl mx-auto">
-          Here are some of my recent projects. Each one reflects my work across
-          web development, documentation, 3D design, and social media
-          management.
-        </p>
+          <p className="text-sm sm:text-base text-muted-foreground leading-7 max-w-2xl mx-auto">
+            A selection of freelance, self-initiated, and academic projects
+            showcasing my hands-on experience in development, design, and
+            real-world problem solving.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project) => {
             const activeImageIndex = currentImages[project.id] || 0;
 
             return (
-              <div
+              <article
                 key={project.id}
-                className="group bg-card rounded-xl overflow-hidden shadow-xs card-hover h-full flex flex-col border border-border/40"
+                className="group h-full flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card/95 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="h-52 overflow-hidden relative bg-black">
+                <div className="relative h-48 sm:h-52 lg:h-56 overflow-hidden bg-black">
                   {project.video ? (
                     <video
                       src={project.video}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       autoPlay
                       muted
                       loop
@@ -179,12 +186,13 @@ export const ProjectsSection = () => {
                     <img
                       src={project.images?.[activeImageIndex] || project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
                     />
                   )}
 
                   {project.images && project.images.length > 1 && (
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                    <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-black/25 px-2 py-1 backdrop-blur-sm">
                       {project.images.map((_, index) => (
                         <span
                           key={index}
@@ -199,23 +207,23 @@ export const ProjectsSection = () => {
                   )}
                 </div>
 
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <div className="mb-4 flex flex-wrap gap-2">
                     {project.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="px-2.5 py-1 text-[11px] font-medium border rounded-full bg-secondary text-secondary-foreground"
+                        className="rounded-full border bg-secondary px-2.5 py-1 text-[11px] font-medium text-secondary-foreground"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <h3 className="text-xl font-semibold leading-tight min-h-[56px] mb-3">
+                  <h3 className="mb-3 text-lg sm:text-xl font-semibold leading-tight min-h-[56px]">
                     {project.title}
                   </h3>
 
-                  <p className="text-sm text-muted-foreground leading-7 min-h-[120px] mb-6">
+                  <p className="mb-6 text-sm leading-6 sm:leading-7 text-muted-foreground min-h-[108px] sm:min-h-[120px]">
                     {project.description}
                   </p>
 
@@ -225,7 +233,8 @@ export const ProjectsSection = () => {
                         href={project.demoUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-foreground/70 hover:text-primary transition-colors duration-300"
+                        aria-label={`Open ${project.title}`}
+                        className="inline-flex items-center justify-center rounded-full p-2 text-foreground/70 transition-colors duration-300 hover:text-primary hover:bg-primary/10"
                       >
                         <ExternalLink size={20} />
                       </a>
@@ -236,24 +245,25 @@ export const ProjectsSection = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-foreground/70 hover:text-primary transition-colors duration-300"
+                        aria-label={`View ${project.title} source code`}
+                        className="inline-flex items-center justify-center rounded-full p-2 text-foreground/70 transition-colors duration-300 hover:text-primary hover:bg-primary/10"
                       >
                         <Github size={20} />
                       </a>
                     )}
                   </div>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="mt-12 text-center">
           <a
             href="https://github.com/itzYoriRyanC"
             target="_blank"
             rel="noreferrer"
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
+            className="cosmic-button mx-auto inline-flex w-fit items-center gap-2"
           >
             Check My Github <ArrowRight size={16} />
           </a>

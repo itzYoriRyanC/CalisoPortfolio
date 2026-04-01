@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Facebook } from "lucide-react";
+import {
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  Facebook,
+} from "lucide-react";
 import { SiDiscord } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -8,82 +16,80 @@ import emailjs from "@emailjs/browser";
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Centralize your links/values (easier to maintain)
   const EMAIL = "calisoryan2@gmail.com";
-  const PHONE = "+649640855896"; // for tel: links (no spaces)
-  const PHONE_LABEL = "+64 9640 855 896"; // for display
+  const PHONE = "+649640855896";
+  const PHONE_LABEL = "+64 9640 855 896";
   const LOCATION = "Philippines, Misamis Occidental";
-
-  // Discord user id link
   const DISCORD_USER_ID = "707200309172109365";
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Prevent double submits (spam-clicking)
     if (isSubmitting) return;
 
-    // Optional: quick guard to ensure env vars exist
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
-      toast.error("Email service is not configured. Please try again later.");
+      toast.error("Email service is not configured.");
       return;
     }
 
     setIsSubmitting(true);
 
-    // IMPORTANT:
-    // - sendForm needs the form element (e.target)
-    // - Do NOT end the line with ';' before chaining .then/.catch
     emailjs
       .sendForm(serviceId, templateId, e.target, publicKey)
       .then(() => {
-        toast.success("Message sent! I'll get back to you soon.");
-
-        // Reset the form fields after success
+        toast.success("Message sent successfully!");
         e.target.reset();
       })
-      .catch((err) => {
-        console.error("EmailJS error:", err);
-        toast.error("Failed to send message. Please try again.");
+      .catch(() => {
+        toast.error("Failed to send message.");
       })
       .finally(() => {
-        // Always re-enable the button (success or fail)
         setIsSubmitting(false);
       });
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary">Touch</span>
-        </h2>
+    <section
+      id="contact"
+      className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-secondary/30"
+    >
+      <div className="container mx-auto max-w-6xl">
+        
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+            Get In <span className="text-primary">Touch</span>
+          </h2>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
-          Have a project in mind or want to collaborate? I’m open to new
-          opportunities and flexible, student-friendly collaborations.
-        </p>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            Open to freelance work, collaborations, and entry-level
+            opportunities. Feel free to reach out.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* LEFT: Contact info + socials */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+          
+          {/* LEFT */}
+          <div className="space-y-8 text-center lg:text-left">
+            <h3 className="text-xl sm:text-2xl font-semibold">
+              Contact Information
+            </h3>
 
             <div className="space-y-6">
+              
               {/* Email */}
-              <div className="flex items-start space-x-4">
+              <div className="flex items-start gap-4 justify-center lg:justify-start">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />
+                  <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-medium">Email</h4>
                   <a
                     href={`mailto:${EMAIL}`}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-sm sm:text-base text-muted-foreground hover:text-primary transition"
                   >
                     {EMAIL}
                   </a>
@@ -91,15 +97,15 @@ export const ContactSection = () => {
               </div>
 
               {/* Phone */}
-              <div className="flex items-start space-x-4">
+              <div className="flex items-start gap-4 justify-center lg:justify-start">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-medium">Phone</h4>
                   <a
                     href={`tel:${PHONE}`}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-sm sm:text-base text-muted-foreground hover:text-primary transition"
                   >
                     {PHONE_LABEL}
                   </a>
@@ -107,111 +113,74 @@ export const ContactSection = () => {
               </div>
 
               {/* Location */}
-              <div className="flex items-start space-x-4">
+              <div className="flex items-start gap-4 justify-center lg:justify-start">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />
+                  <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-medium">Location</h4>
-                  <span className="text-muted-foreground">{LOCATION}</span>
+                  <span className="text-sm sm:text-base text-muted-foreground">
+                    {LOCATION}
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Social links */}
-            <div className="pt-8">
+            {/* Social */}
+            <div className="pt-6">
               <h4 className="font-medium mb-4">Connect With Me</h4>
 
-              <div className="flex space-x-4 justify-center">
-                <a
-                  href="https://www.linkedin.com/in/ryan-caliso-1519b238a/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
-                  className="text-foreground/80 hover:text-primary transition-colors"
-                >
-                  <Linkedin size={22} />
+              <div className="flex justify-center lg:justify-start gap-5">
+                <a href="https://www.linkedin.com/in/ryan-caliso-1519b238a/" target="_blank" rel="noreferrer">
+                  <Linkedin className="hover:text-primary transition" />
                 </a>
 
-                <a
-                  href="https://www.facebook.com/ry.lagroma"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Facebook"
-                  className="text-foreground/80 hover:text-primary transition-colors"
-                >
-                  <Facebook size={22} />
+                <a href="https://www.facebook.com/ry.lagroma" target="_blank" rel="noreferrer">
+                  <Facebook className="hover:text-primary transition" />
                 </a>
 
-                <a
-                  href="https://www.instagram.com/yoooo_riii/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Instagram"
-                  className="text-foreground/80 hover:text-primary transition-colors"
-                >
-                  <Instagram size={22} />
+                <a href="https://www.instagram.com/yoooo_riii/" target="_blank" rel="noreferrer">
+                  <Instagram className="hover:text-primary transition" />
                 </a>
 
-                <a
-                  href={`https://discord.com/users/${DISCORD_USER_ID}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Discord"
-                  className="text-foreground/80 hover:text-primary transition-colors"
-                >
-                  <SiDiscord size={22} className="block" />
+                <a href={`https://discord.com/users/${DISCORD_USER_ID}`} target="_blank" rel="noreferrer">
+                  <SiDiscord className="hover:text-primary transition" />
                 </a>
               </div>
             </div>
           </div>
 
-          {/* RIGHT: Message form */}
-          <div className="bg-card p-8 rounded-lg shadow-xs">
-            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
+          {/* RIGHT - FORM */}
+          <div className="bg-card p-6 sm:p-8 rounded-xl border border-border/40 shadow-sm">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-6">
+              Send a Message
+            </h3>
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="eg. John Doe..."
-                />
-              </div>
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Your Name"
+                className="w-full px-4 py-3 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary outline-none"
+              />
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="john@gmail.com"
-                />
-              </div>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Your Email"
+                className="w-full px-4 py-3 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary outline-none"
+              />
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                  placeholder="Hello, I'd like to talk about..."
-                />
-              </div>
+              <textarea
+                name="message"
+                required
+                rows={5}
+                placeholder="Your Message"
+                className="w-full px-4 py-3 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary outline-none resize-none"
+              />
 
               <button
                 type="submit"

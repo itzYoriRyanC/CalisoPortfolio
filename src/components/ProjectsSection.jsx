@@ -112,12 +112,21 @@ const projects = [
   },
   {
     id: 10,
-    title: "Google Data Analytics Certificate",
+    title: "Google Data Analytics Certificate - Data, Data, Everywhere",
     description:
       "Completed the Google Data Analytics course on Coursera, covering the foundations of data, analytics workflows, and data-driven decision-making.",
     images: ["/projects/DataAnalyst.png"],
     tags: ["Google", "Coursera", "Data Analytics"],
-    demoUrl: "/projects/mydataanalystjourney.pdf",
+    demoUrl: "https://www.coursera.org/account/accomplishments/certificate/I00HCV8ZSXC4",
+  },
+  {
+    id: 11,
+    title: "Google Data Analytics – Ask Questions to Make Data-Driven Decisions",
+    description:
+      "Completed a Google Data Analytics course on Coursera focused on asking effective questions, defining business problems, and supporting data-driven decision-making. Learned how to translate stakeholder needs into actionable analysis.",
+    images: ["/projects/StructuredThinking.png"],
+    tags: ["Google", "Coursera", "Data Analytics"],
+    demoUrl: "https://www.coursera.org/account/accomplishments/certificate/3SI9WB6A5BJW",
   },
 ];
 

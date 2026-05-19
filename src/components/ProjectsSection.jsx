@@ -28,7 +28,8 @@ const projects = [
       "A 3D product render for a local perfume brand featuring realistic materials, refined lighting, and smooth presentation for visual promotion.",
     video: "/projects/0001-0250.mp4",
     tags: ["Blender", "Modeling", "Animation"],
-    demoUrl: "https://www.facebook.com/people/Majestic-Fragrance/61560987964311/",
+    demoUrl:
+      "https://www.facebook.com/people/Majestic-Fragrance/61560987964311/",
   },
   {
     id: 4,
@@ -117,7 +118,8 @@ const projects = [
       "Completed the Google Data Analytics course on Coursera, covering the foundations of data, analytics workflows, and data-driven decision-making.",
     images: ["/projects/DataAnalyst.png"],
     tags: ["Google", "Coursera", "Data Analytics"],
-    demoUrl: "https://www.coursera.org/account/accomplishments/certificate/I00HCV8ZSXC4",
+    demoUrl:
+      "https://www.coursera.org/account/accomplishments/certificate/I00HCV8ZSXC4",
   },
   {
     id: 11,
@@ -126,7 +128,45 @@ const projects = [
       "Completed a Google Data Analytics course on Coursera focused on asking effective questions, defining business problems, and supporting data-driven decision-making. Learned how to translate stakeholder needs into actionable analysis.",
     images: ["/projects/StructuredThinking.png"],
     tags: ["Google", "Coursera", "Data Analytics"],
-    demoUrl: "https://www.coursera.org/account/accomplishments/certificate/3SI9WB6A5BJW",
+    demoUrl:
+      "https://www.coursera.org/account/accomplishments/certificate/3SI9WB6A5BJW",
+  },
+  {
+    id: 12,
+    title: "Reuben 3D Architect Portfolio",
+    description:
+      "A freelancing project for client Reuben, creating a modern interactive portfolio website to showcase his architectural design, 3D building work, and professional projects.",
+    images: [
+      "/projects/reubenhero.png",
+      "/projects/ReubenExp.png",
+      "/projects/ReubenExpdet.png",
+      "/projects/Reubencontact.png",
+      "/projects/ReubenPrivacy.png",
+    ],
+    tags: ["React", "JavaScript", "Three.js", "Blender", "Vercel"],
+    demoUrl: "https://reuben-portfolio.vercel.app/",
+  },
+  {
+    id: 13,
+    title: "Trellis Insights INC. Data Entry Analyst",
+    description:
+      "A 1 month and 7 days work experience as a Data Entry Analyst for Trellis Insights, focusing on product data review, spreadsheet tracking, unmatched item checking, and team coordination.",
+    images: [
+      "/projects/TrellisInisghtsProof.png",
+      "/projects/TrellisInsightsDC.png",
+      "/projects/TrellisInsightsPays.jpg",
+      "/projects/TrellisTimeSheet.png",
+    ],
+    imageFit: "contain",
+    tags: [
+      "Matching Algorithm",
+      "Data Entry",
+      "Data Analyst",
+      "Google Sheets",
+      "Python",
+      "Discord",
+    ],
+     demoUrl: "/projects/TrellisProof.pdf",
   },
 ];
 
@@ -175,13 +215,20 @@ export const ProjectsSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project) => {
             const activeImageIndex = currentImages[project.id] || 0;
+            const shouldContainImage = project.imageFit === "contain";
 
             return (
               <article
                 key={project.id}
                 className="group h-full flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card/95 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="relative h-48 sm:h-52 lg:h-56 overflow-hidden bg-black">
+                <div
+                  className={`relative overflow-hidden bg-black ${
+                    shouldContainImage
+                      ? "h-56 sm:h-64 lg:h-72"
+                      : "h-48 sm:h-52 lg:h-56"
+                  }`}
+                >
                   {project.video ? (
                     <video
                       src={project.video}
@@ -195,7 +242,11 @@ export const ProjectsSection = () => {
                     <img
                       src={project.images?.[activeImageIndex] || project.image}
                       alt={project.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className={`h-full w-full transition-transform duration-500 ${
+                        shouldContainImage
+                          ? "object-contain bg-black group-hover:scale-105"
+                          : "object-cover group-hover:scale-110"
+                      }`}
                       loading="lazy"
                     />
                   )}

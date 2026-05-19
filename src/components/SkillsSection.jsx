@@ -10,6 +10,7 @@ const skills = [
   { name: "Tailwind CSS", level: 70, category: "Web Development" },
   { name: "Node.js", level: 30, category: "Web Development" },
   { name: "Firebase", level: 50, category: "Web Development" },
+   { name: "Three.js", level: 50, category: "Web Development" },
  
 
   // 3D Design

@@ -168,6 +168,29 @@ const projects = [
     ],
      demoUrl: "/projects/TrellisProof.pdf",
   },
+  {
+    id: 14,
+    title: "Chedelouise Portfolio & Brand Website",
+    description:
+      "A freelance web development and design project for Chedelouise, featuring a sleek, dark-themed interactive UI/UX, custom SVG animations, a stylized logo entry sequence, and a fully responsive layout to showcase the client's creative portfolio.",
+    images: [
+      "/projects/Chede-Port.png",
+      "/projects/Chede-port2.png",
+      "/projects/Chede-port3.png",
+      "/projects/Chede-port4.png",
+      "/projects/Chede-port5.png",
+    ],
+    imageFit: "contain",
+    tags: [
+      "Front-End Development",
+      "UI/UX Design",
+      "React.js",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Web Design",
+    ],
+    demoUrl: "#", // Replace with your actual live link or PDF case study if available
+  },
 ];
 
 export const ProjectsSection = () => {

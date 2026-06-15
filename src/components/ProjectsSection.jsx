@@ -189,8 +189,37 @@ const projects = [
       "Framer Motion",
       "Web Design",
     ],
-    demoUrl: "#", // Replace with your actual live link or PDF case study if available
+    demoUrl: "https://chede-portfolio.vercel.app/", // Replace with your actual live link or PDF case study if available
   },
+  {
+  id: 15,
+  title: "Pera App",
+  description:
+    "A sleek, modern multi-currency expense tracker featuring an intuitive, dark-mode user interface and seamless financial logging.",
+  images: [
+    "/projects/PeraApp.png",
+    "/projects/PeraApp1.png",
+    "/projects/PeraApp3.jpg",
+    "/projects/PeraApp4.jpg",
+    "/projects/PeraApp6.jpg",
+    "/projects/PeraApp7.jpg",
+    "/projects/PeraApp8.jpg",
+    "/projects/PeraApp9.jpg",
+    "/projects/PeraApp10.jpg",
+    "/projects/PeraApp11.jpg",
+    "/projects/PeraApp12.jpg",
+  ],
+  
+  imageFit: "contain",
+  tags: [
+    "Application Development",
+    "UI/UX Design",
+    "React Native",
+    "Software Development",
+    "App Expense Tracker",
+  ],
+  demoUrl: "https://expo.dev/accounts/yoridev/projects/PeraAppModern/builds/39d726d4-2fd7-4a3e-9a01-0b2f75cdc992", // Replace with your actual live link or PDF case study if available
+},
 ];
 
 export const ProjectsSection = () => {

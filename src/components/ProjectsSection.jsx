@@ -220,6 +220,17 @@ const projects = [
   ],
   demoUrl: "https://expo.dev/accounts/yoridev/projects/PeraAppModern/builds/39d726d4-2fd7-4a3e-9a01-0b2f75cdc992", // Replace with your actual live link or PDF case study if available
 },
+{
+    id: 16,
+    title: "Prepare Data For Exploration",
+    description:
+      "Completed the Prepare Data for Exploration course on Coursera, covering data collection, data structuring, and extraction practices.",
+    images: 
+    ["/projects/PrepareDataForExploration.png"],
+    tags: ["Google", "Coursera", "Data Analyst"],
+    demoUrl:
+      "https://www.coursera.org/account/accomplishments/certificate/GMAZJBUY9NON",
+  },
 ];
 
 export const ProjectsSection = () => {

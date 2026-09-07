@@ -148,9 +148,9 @@ const projects = [
   },
   {
     id: 13,
-    title: "Trellis Insights INC. Data Entry Analyst",
+    title: "Trellis Insights Inc. Data Analyst",
     description:
-      "A 1 month and 7 days work experience as a Data Entry Analyst for Trellis Insights, focusing on product data review, spreadsheet tracking, unmatched item checking, and team coordination.",
+      "Data Entry Analyst at Trellis Insights with hands-on experience in product data quality control, spreadsheet management, item reconciliation, and collaborative data processing.",
     images: [
       "/projects/TrellisInisghtsProof.png",
       "/projects/TrellisInsightsDC.png",
@@ -170,7 +170,7 @@ const projects = [
   },
   {
     id: 14,
-    title: "Chedelouise Portfolio & Brand Website",
+    title: "Chedelouise Portfolio",
     description:
       "A freelance web development and design project for Chedelouise, featuring a sleek, dark-themed interactive UI/UX, custom SVG animations, a stylized logo entry sequence, and a fully responsive layout to showcase the client's creative portfolio.",
     images: [
@@ -230,6 +230,37 @@ const projects = [
     tags: ["Google", "Coursera", "Data Analyst"],
     demoUrl:
       "https://www.coursera.org/account/accomplishments/certificate/GMAZJBUY9NON",
+  },
+  {
+    id: 17,
+    title: "Process Data from Dirty to Clean",
+    description:
+     "Completed Google’s Data Analytics course, learning data cleaning in SQL and Spreadsheet.",
+    images: 
+    ["/projects/caliso_Data.png"],
+    tags: ["Google", "Coursera", "Data Analyst"],
+    demoUrl:
+      "https://coursera.org/share/c6f7107437536609bee9a3c4a349e8bb",
+  },
+{
+    id: 18,
+    title: "Discover Dapitan",
+    description:
+     "A gamified QR tourism platform that transforms destination visits into interactive adventures through challenges, rewards, and immersive exploration.",
+
+    images: [
+    "/projects/dapit4.jpg",
+    "/projects/Dapit1.jpg",
+    "/projects/dapit2.jpg",
+    "/projects/dapit3.jpg",
+    "/projects/dapit5.jpg",
+    "/projects/dapit6.jpg",
+    "/projects/dapit7.jpg",
+    "/projects/dapit8.jpg",
+  ],
+    tags: ["Thesis", "Freelance", "React", "Firebase"],
+    demoUrl:
+      "https://dapitan-system.vercel.app/",
   },
 ];
 

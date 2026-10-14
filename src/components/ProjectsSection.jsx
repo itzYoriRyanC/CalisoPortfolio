@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
-
+import { ArrowRight, ExternalLink, Github, PlayCircle } from "lucide-react";
 const projects = [
   {
     id: 1,
@@ -209,7 +208,6 @@ const projects = [
     "/projects/PeraApp11.jpg",
     "/projects/PeraApp12.jpg",
   ],
-  
   imageFit: "contain",
   tags: [
     "Application Development",
@@ -225,7 +223,7 @@ const projects = [
     title: "Prepare Data For Exploration",
     description:
       "Completed the Prepare Data for Exploration course on Coursera, covering data collection, data structuring, and extraction practices.",
-    images: 
+    images:
     ["/projects/PrepareDataForExploration.png"],
     tags: ["Google", "Coursera", "Data Analyst"],
     demoUrl:
@@ -236,7 +234,7 @@ const projects = [
     title: "Process Data from Dirty to Clean",
     description:
      "Completed Google’s Data Analytics course, learning data cleaning in SQL and Spreadsheet.",
-    images: 
+    images:
     ["/projects/caliso_Data.png"],
     tags: ["Google", "Coursera", "Data Analyst"],
     demoUrl:
@@ -247,7 +245,6 @@ const projects = [
     title: "Discover Dapitan",
     description:
      "A gamified QR tourism platform that transforms destination visits into interactive adventures through challenges, rewards, and immersive exploration.",
-
     images: [
     "/projects/dapit4.jpg",
     "/projects/Dapit1.jpg",
@@ -262,16 +259,29 @@ const projects = [
     demoUrl:
       "https://dapitan-system.vercel.app/",
   },
+  {
+    id: 19,
+    title: "DB Digital Library — Shopify E-commerce Store",
+    description:
+      "Developed and customized a Shopify digital bookstore, managing product listings, automated e-book delivery, checkout configuration, and SEO optimization.",
+    images: [
+      "/projects/db1.0.png",
+      "/projects/db2.png",
+      "/projects/DB3.png",
+      "/projects/DB4.png",
+      "/projects/DB5.png",
+    ],
+    videoDemo: "/projects/DB_VD1.mp4",
+    tags: ["Shopify", "Liquid", "E-commerce", "SEO", "Digital Products"],
+    demoUrl: "https://readwithdb.myshopify.com/",
+  },
 ];
-
 export const ProjectsSection = () => {
   const [currentImages, setCurrentImages] = useState({});
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImages((prev) => {
         const updated = {};
-
         projects.forEach((project) => {
           if (project.images && project.images.length > 1) {
             const currentIndex = prev[project.id] || 0;
@@ -280,14 +290,11 @@ export const ProjectsSection = () => {
             updated[project.id] = 0;
           }
         });
-
         return updated;
       });
     }, 2800);
-
     return () => clearInterval(interval);
   }, []);
-
   return (
     <section
       id="projects"
@@ -298,26 +305,23 @@ export const ProjectsSection = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
             Featured <span className="text-primary">Projects</span>
           </h2>
-
           <p className="text-sm sm:text-base text-muted-foreground leading-7 max-w-2xl mx-auto">
             A selection of freelance, self-initiated, and academic projects
             showcasing my hands-on experience in development, design, and
             real-world problem solving.
           </p>
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project) => {
             const activeImageIndex = currentImages[project.id] || 0;
             const shouldContainImage = project.imageFit === "contain";
-
             return (
               <article
                 key={project.id}
-                className="group h-full flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card/95 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group relative h-full flex flex-col overflow-visible rounded-2xl border border-border/40 bg-card/95 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <div
-                  className={`relative overflow-hidden bg-black ${
+                  className={`relative overflow-hidden rounded-t-2xl bg-black ${
                     shouldContainImage
                       ? "h-56 sm:h-64 lg:h-72"
                       : "h-48 sm:h-52 lg:h-56"
@@ -344,7 +348,6 @@ export const ProjectsSection = () => {
                       loading="lazy"
                     />
                   )}
-
                   {project.images && project.images.length > 1 && (
                     <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-black/25 px-2 py-1 backdrop-blur-sm">
                       {project.images.map((_, index) => (
@@ -360,7 +363,6 @@ export const ProjectsSection = () => {
                     </div>
                   )}
                 </div>
-
                 <div className="flex flex-1 flex-col p-5 sm:p-6">
                   <div className="mb-4 flex flex-wrap gap-2">
                     {project.tags.map((tag, index) => (
@@ -372,15 +374,12 @@ export const ProjectsSection = () => {
                       </span>
                     ))}
                   </div>
-
                   <h3 className="mb-3 text-lg sm:text-xl font-semibold leading-tight min-h-[56px]">
                     {project.title}
                   </h3>
-
                   <p className="mb-6 text-sm leading-6 sm:leading-7 text-muted-foreground min-h-[108px] sm:min-h-[120px]">
                     {project.description}
                   </p>
-
                   <div className="mt-auto flex items-center gap-3">
                     {project.demoUrl && project.demoUrl !== "#" && (
                       <a
@@ -392,6 +391,56 @@ export const ProjectsSection = () => {
                       >
                         <ExternalLink size={20} />
                       </a>
+                    )}
+                    {project.videoDemo && (
+                      <div
+                        className="group/video relative"
+                        onMouseEnter={(event) => {
+                          const video = event.currentTarget.querySelector("video");
+                          video?.play().catch(() => {});
+                        }}
+                        onMouseLeave={(event) => {
+                          const video = event.currentTarget.querySelector("video");
+                          if (video) {
+                            video.pause();
+                            video.currentTime = 0;
+                          }
+                        }}
+                        onFocus={(event) => {
+                          const video = event.currentTarget.querySelector("video");
+                          video?.play().catch(() => {});
+                        }}
+                        onBlur={(event) => {
+                          if (!event.currentTarget.contains(event.relatedTarget)) {
+                            const video = event.currentTarget.querySelector("video");
+                            video?.pause();
+                          }
+                        }}
+                      >
+                        <a
+                          href={project.videoDemo}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`Watch ${project.title} video presentation`}
+                          className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-foreground/70 transition-colors duration-300 hover:bg-primary/10 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                        >
+                          <PlayCircle size={20} />
+                          <span>Video Demo</span>
+                        </a>
+                        <div className="pointer-events-none absolute bottom-full left-0 z-30 mb-3 w-64 max-w-[80vw] rounded-xl border border-border bg-card p-2 opacity-0 shadow-2xl transition-opacity duration-200 group-hover/video:opacity-100 group-focus-within/video:opacity-100">
+                          <video
+                            src={project.videoDemo}
+                            className="aspect-video w-full rounded-lg bg-black object-contain"
+                            muted
+                            loop
+                            playsInline
+                            preload="metadata"
+                          />
+                          <p className="pt-2 text-center text-xs text-muted-foreground">
+                            Click to watch the full presentation
+                          </p>
+                        </div>
+                      </div>
                     )}
 
                     {project.githubUrl && (
@@ -411,7 +460,6 @@ export const ProjectsSection = () => {
             );
           })}
         </div>
-
         <div className="mt-12 text-center">
           <a
             href="https://github.com/itzYoriRyanC"
